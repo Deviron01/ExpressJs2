@@ -284,11 +284,18 @@ Content-Type: application/json
 
 
 **Submission Checklist**
-
+--
 [] Users can register and login
+
 [] Tokens expire after 24 hours
+
 [] Users only see their own todos
+
 [] All CRUD operations work
+
 [] Input validation implemented
+
 [] Error messages are helpful
+
 [] Passwords are hashed
+
