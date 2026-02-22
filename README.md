@@ -1,12 +1,12 @@
 # ExpressJs2
 
-Task: Build a Todo List API with User Authentication
+# **Task: Build a Todo List API with User Authentication**
 
-Objective
+***Objective***
 
 Create a todo list API where users can register, login, and manage their own todos.
 
-Requirements
+**Requirements**
 
 1. Setup & Installation
 
@@ -27,16 +27,17 @@ todo-api/
 └── server.js
 ```
 
-Core Features
+**Core Features**
 
-Phase 1: User Authentication
+**Phase 1: User Authentication**
 
-Endpoint Method Description
-/api/auth/register POST Create new account
-/api/auth/login POST Login and get token
-/api/auth/profile GET Get user info (protected)
+|Endpoint| Method| Description|
+|----|----|----|
+|/api/auth/register|POST| Create new account|
+|/api/auth/login| POST| Login and get token|
+|/api/auth/profile| GET| Get user info (protected)|
 
-User Model
+**User Model**
 
 ```javascript
 // models/User.js
@@ -48,16 +49,17 @@ User Model
 }
 ```
 
-Phase 2: Todo Management (All routes protected)
+**Phase 2: Todo Management (All routes protected)**
 
-Endpoint Method Description
-/api/todos GET Get user's todos
-/api/todos POST Create new todo
-/api/todos/:id PUT Update todo
-/api/todos/:id DELETE Delete todo
-/api/todos/:id/complete PATCH Mark as complete/incomplete
+|Endpoint| Method| Description|
+|----|----|----|
+|/api/todos| GET| Get user's todos|
+|/api/todos| POST| Create new todo|
+|/api/todos/:id| PUT| Update todo|
+|/api/todos/:id| DELETE| Delete todo|
+|/api/todos/:id/complete| PATCH| Mark as complete/incomplete|
 
-Todo Model
+**Todo Model**
 
 ```javascript
 // models/Todo.js
@@ -67,20 +69,20 @@ Todo Model
   completed: Boolean,
   userId: ObjectId,    // reference to User
   dueDate: Date,
-  priority: String     // 'low', 'medium', 'high'
+  priority: String |    // 'low', 'medium', 'high'
 }
 ```
 
-Step-by-Step Implementation
+**Step-by-Step Implementation**
 
-Step 1: Environment Setup (.env)
+**Step 1: Environment Setup (.env)**
 
 ```env
 PORT=3000
 JWT_SECRET=your_super_secret_key_here
 ```
 
-Step 2: Authentication Middleware
+**Step 2: Authentication Middleware**
 
 ```javascript
 // middleware/auth.js
@@ -103,7 +105,7 @@ module.exports = (req, res, next) => {
 };
 ```
 
-Step 3: Register Route
+**Step 3: Register Route**
 
 ```javascript
 app.post('/api/auth/register', async (req, res) => {
@@ -139,7 +141,7 @@ app.post('/api/auth/register', async (req, res) => {
 });
 ```
 
-Step 4: Todo Routes (Protected)
+**Step 4: Todo Routes (Protected)**
 
 ```javascript
 // Get user's todos
@@ -178,50 +180,49 @@ app.put('/api/todos/:id', auth, async (req, res) => {
 });
 ```
 
-Practice Tasks
+**Practice Tasks**
 
-Task 1: User Authentication
+**Task 1: User Authentication**
+- Register a new user (POST to /api/auth/register)
+- Login with that user (POST to /api/auth/login)
+- Save the token you receive
+- Try to access profile without token (should fail)
+- Access profile with token (should work)
 
-1. Register a new user (POST to /api/auth/register)
-2. Login with that user (POST to /api/auth/login)
-3. Save the token you receive
-4. Try to access profile without token (should fail)
-5. Access profile with token (should work)
+**Task 2: Todo CRUD**
 
-Task 2: Todo CRUD
+- Create 3 different todos
+-  Get all your todos
+- Update one todo's title
+- Mark one todo as completed
+- Delete a todo
 
-1. Create 3 different todos
-2. Get all your todos
-3. Update one todo's title
-4. Mark one todo as completed
-5. Delete a todo
-
-Task 3: Filtering & Sorting
+**Task 3: Filtering & Sorting**
 Add query parameters to GET /api/todos:
 
-· ?completed=true - show only completed todos
-· ?priority=high - filter by priority
-· ?sort=dueDate - sort by due date
-· ?limit=5 - limit results
+- ?completed=true - show only completed todos
+- ?priority=high - filter by priority
+- ?sort=dueDate - sort by due date
+- ?limit=5 - limit results
 
-Bonus Challenges
+**Bonus Challenges**
 
-1. Password Reset Flow
-   · Add "forgot password" functionality
-   · Implement reset token that expires in 1 hour
-2. Todo Categories
-   · Add categories/tags to todos
-   · Filter by multiple categories
-3. Todo Sharing
-   · Allow users to share todos with other users
-   · Add "shared with" array to Todo model
-4. Rate Limiting
-   · Limit login attempts (5 per minute)
-   · Prevent brute force attacks
+- Password Reset Flow
+   - Add "forgot password" functionality
+   - Implement reset token that expires in 1 hour
+- Todo Categories
+   - Add categories/tags to todos
+   - Filter by multiple categories
+- Todo Sharing
+   - Allow users to share todos with other users
+   - Add "shared with" array to Todo model
+- Rate Limiting
+   - Limit login attempts (5 per minute)
+   - Prevent brute force attacks
 
-Testing with Postman
+**Testing with Postman**
 
-Register Request:
+***Register Request:***
 
 ```json
 POST http://localhost:3000/api/auth/register
@@ -234,7 +235,7 @@ Content-Type: application/json
 }
 ```
 
-Login Request:
+***Login Request:***
 
 ```json
 POST http://localhost:3000/api/auth/login
@@ -246,7 +247,7 @@ Content-Type: application/json
 }
 ```
 
-Create Todo (with token):
+***Create Todo (with token):***
 
 ```json
 POST http://localhost:3000/api/todos
@@ -261,43 +262,33 @@ Content-Type: application/json
 }
 ```
 
-Validation Rules
+**Validation Rules**
 
-Add these validations:
+***Add these validations:***
 
-· Email must be valid format
-· Password minimum 6 characters
-· Todo title required, max 100 chars
-· Due date must be future date
-· Priority must be 'low', 'medium', or 'high'
+- Email must be valid format
+- Password minimum 6 characters
+- Todo title required, max 100 chars
+- Due date must be future date
+- Priority must be 'low', 'medium', or 'high'
 
-Expected Learning Outcomes
+***Expected Learning Outcomes***
 
-· User authentication with JWT
-· Password hashing with bcrypt
-· Protected routes
-· Relationship between User and Todo
-· Environment variables
-· Error handling patterns
-· Request validation
+- User authentication with JWT
+- Password hashing with bcrypt
+- Protected routes
+- Relationship between User and Todo
+- Environment variables
+- Error handling patterns
+- Request validation
 
-Common Challenges & Solutions
 
-Problem: Token not working
-Solution: Check format - should be "Bearer YOUR_TOKEN"
+**Submission Checklist**
 
-Problem: User can see others' todos
-Solution: Always filter by userId in queries
-
-Problem: Password in response
-Solution: Use .select('-password') or delete before sending
-
-Submission Checklist
-
-· Users can register and login
-· Tokens expire after 24 hours
-· Users only see their own todos
-· All CRUD operations work
-· Input validation implemented
-· Error messages are helpful
-· Passwords are hashed
+[] Users can register and login
+[] Tokens expire after 24 hours
+[] Users only see their own todos
+[] All CRUD operations work
+[] Input validation implemented
+[] Error messages are helpful
+[] Passwords are hashed
